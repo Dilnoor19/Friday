@@ -1,80 +1,30 @@
 # 🤖 Friday — AI Voice Assistant
-### *The foundation of Orion v1*
 
-> Friday is a modular Python-based voice assistant built for Windows.  
-> It serves as the direct predecessor to **Orion v1** — a more powerful, fully modular AI assistant currently in development.
-
----
-
-## 🚀 What's New in This Version
-
-This is a significant upgrade over the original Friday codebase:
-
-| Area | Before | Now |
-|------|--------|-----|
-| Mic handling | Basic, crash-prone | Retry logic, noise threshold, OSError catch |
-| Error handling | Bare except everywhere | Per-function try/except with meaningful messages |
-| Reminders | ❌ | ✅ Background thread, natural language parsing |
-| System Info | ❌ | ✅ CPU, RAM, Disk, Battery via psutil |
-| Calculator | ❌ | ✅ Math eval + 15+ unit conversions |
-| Chat History | ❌ | ✅ Last 10 exchanges stored in memory |
-| Code structure | Single flat script | Grouped, documented, clean sections |
+> A Python-based voice assistant for Windows, built to automate daily tasks through voice commands.  
+> **Succeeded by [Orion v1](https://github.com/dilnoor19/orion-v1)** — a more powerful evolution of this project.
 
 ---
 
-## 🧠 Features
+## 💡 About
 
-### 🎙️ Voice Recognition
-- Listens with retry logic (2 attempts before giving up)
-- Dynamic energy threshold — adapts to noisy environments
-- Graceful mic-not-found error handling
+Friday is a personal AI voice assistant that understands natural speech and responds with voice output. It was built as a hands-on Python project to explore speech recognition, TTS, API integration, and automation — and later became the foundation for **Orion v1**.
 
-### 💬 AI Chat (Gemini)
-- Fallback for any unrecognised command
-- Powered by Google Gemini API
+---
 
-### ⏰ Reminders
-- `"Set reminder call mom in 10 minutes"`
-- `"Remind me to drink water in 5 minutes"`
-- `"List reminders"` — shows all pending ones
-- Fires in a background thread, never blocks the assistant
+## ✨ Features
 
-### 📊 System Info
-- `"System info"` / `"CPU usage"` / `"Battery"`
-- Shows CPU %, RAM usage, Disk space, Battery level & charging status
-
-### 🧮 Calculator & Unit Converter
-- `"Calculate 25 times 4 plus 10"`
-- `"Convert 100 km to miles"`
-- `"Convert 37 celsius to fahrenheit"`
-- Supports: length, weight, temperature, and data units
-
-### 🗂️ Chat History
-- `"Show history"` / `"Last commands"`
-- Displays last 10 exchanges between you and Friday
-
-### 🌐 Open Websites & Apps
-- `"Open Netflix"` / `"Open VS Code"` / `"Open GitHub"`
-- Easily extendable — just add entries to the dictionaries
-
-### 🌤️ Weather
-- `"Weather"` → fetches live Delhi weather via OpenWeatherMap API
-
-### 📰 News
-- `"News"` → reads top 5 Indian headlines via NewsAPI
-
-### 🎵 Play Songs
-- `"Play song"` → asks for song name, plays on YouTube
-
-### 📸 Screenshot
-- `"Take screenshot"` / `"Take SS"`
-
-### 😂 Jokes
-- `"Tell me a joke"` / `"Something funny"`
-
-### 📅 Schedule & Time
-- `"Schedule"` → reads your daily plan
-- `"Time"` → tells current time
+- 🎙️ **Voice recognition** — listens and responds using Google Speech API
+- 💬 **AI chat** — powered by Google Gemini for open-ended conversations
+- 🌤️ **Live weather** — fetches real-time weather via OpenWeatherMap
+- 📰 **News updates** — reads top 5 Indian headlines via NewsAPI
+- 🎵 **Play songs** — plays any song on YouTube by voice
+- 🌐 **Open websites** — Netflix, Discord, GitHub, and more
+- 🖥️ **Open apps** — VS Code, Spotify, WhatsApp, Chrome, and more
+- 📅 **Daily schedule** — reads your personalised weekly plan
+- 📸 **Screenshot** — saves a screenshot instantly
+- 😂 **Jokes** — tells random programming jokes
+- 🔊 **Volume control** — increase, decrease, or mute by voice
+- 🕐 **Time & date** — tells current time and day
 
 ---
 
@@ -82,13 +32,13 @@ This is a significant upgrade over the original Friday codebase:
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/dilnoor19/friday-assistant.git
-cd friday-assistant
+git clone https://github.com/dilnoor19/friday.git
+cd friday
 ```
 
 ### 2. Install dependencies
 ```bash
-pip install pyttsx3 SpeechRecognition pyautogui pyjokes wikipedia pywhatkit requests psutil pyaudio
+pip install pyttsx3 SpeechRecognition pyautogui pyjokes wikipedia pywhatkit requests pyaudio
 ```
 
 > ⚠️ If `pyaudio` fails on Windows:
@@ -98,32 +48,20 @@ pip install pyttsx3 SpeechRecognition pyautogui pyjokes wikipedia pywhatkit requ
 > ```
 
 ### 3. Add your API keys
-Open `friday_upgraded.py` and replace the placeholders at the top:
+Open `main.py` and replace the placeholders:
 ```python
-GEMINI_API_KEY  = "your_gemini_api_key"
-GEMINI_URL      = "your_gemini_endpoint_url"
+API_KEY         = "your_gemini_api_key"
+URL             = "your_gemini_endpoint_url"
 WEATHER_API_KEY = "your_openweathermap_api_key"
 NEWS_API_KEY    = "your_newsapi_key"
 ```
 
 ### 4. Update app shortcuts
-In `open_apps()`, update the `.lnk` paths to match your own desktop shortcuts.
+In `open_apps()`, update the `.lnk` paths to match shortcuts on your own desktop.
 
 ### 5. Run
 ```bash
-python friday_upgraded.py
-```
-
----
-
-## 📁 Project Structure
-
-```
-friday-assistant/
-│
-├── friday_upgraded.py   # Main assistant file
-├── screenshot.png       # Saved here when you say "take screenshot"
-└── README.md            # This file
+python main.py
 ```
 
 ---
@@ -133,36 +71,35 @@ friday-assistant/
 ```
 "Open Netflix"
 "What's the weather?"
-"Set reminder drink water in 20 minutes"
-"List reminders"
-"System info"
-"Calculate 150 divided by 6"
-"Convert 5 kg to pounds"
-"Show history"
 "Tell me a joke"
-"Play song Dil Chahta Hai"
+"Play song Kesariya"
 "News"
 "Take screenshot"
+"Schedule"
+"Time"
 "Exit"
 ```
 
 ---
 
-## 🔮 Orion v1 — What's Coming Next
+## 📁 Project Structure
 
-Friday is the foundation. **Orion v1** is the evolution.
+```
+friday/
+├── main.py        # Core assistant
+├── screenshot.png # Saved when you say "take screenshot"
+└── README.md
+```
 
-Planned upgrades in Orion:
+---
 
-- 🧩 **Fully modular architecture** — each feature in its own Python module
-- 🧠 **Persistent memory** — remembers user preferences across sessions (JSON/SQLite)
-- 🖥️ **GUI dashboard** — live status, command history, reminders panel (Tkinter or PyQt)
-- 🔌 **Plugin system** — drop in new skills without touching core code
-- 🌐 **Offline fallback** — works without internet using local LLM (Ollama)
-- 📱 **Multi-device support** — control from phone via local network
-- 🎯 **Wake word detection** — always-on listening with "Hey Orion"
+## 🔮 What's Next
 
-> Friday was the experiment. Orion is the product.
+This project has been succeeded by **[Orion v1](https://github.com/dilnoor19/orion-v1)** — a fully upgraded version with:
+- Better mic handling & retry logic
+- Reminders, system info, calculator & unit converter
+- Chat history memory
+- And more coming in Orion v2...
 
 ---
 
@@ -175,4 +112,4 @@ GitHub: [github.com/dilnoor19](https://github.com/dilnoor19)
 
 ## 📄 License
 
-MIT License — free to use, modify, and build on.
+MIT License
