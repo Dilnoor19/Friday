@@ -1,5 +1,7 @@
 # 🤖 Friday — AI Voice Assistant
 
+> **This project has evolved.** Friday is the v1 predecessor to [Orion](https://github.com/dilnoor19/orion), a more powerful modular AI assistant. This repo is kept for reference and learning purposes.
+
 Friday is a Python-based desktop voice assistant powered by Google Gemini AI. It listens to your voice, understands commands, and performs a wide range of tasks — from opening apps and playing music to fetching weather, news, and cracking jokes.
 
 ---
@@ -29,13 +31,13 @@ Friday is a Python-based desktop voice assistant powered by Google Gemini AI. It
 
 - **Python 3.x**
 - `pyttsx3` — Text-to-Speech (offline, SAPI5)
-- `speech_recognition` — Microphone input via Google API
-- `requests` — HTTP calls to Gemini, Weather, News APIs
+- `speech_recognition` — Microphone input via Google Speech API
+- `requests` — HTTP calls to Gemini, Weather, and News APIs
 - `pywhatkit` — YouTube music playback
 - `wikipedia` — Wikipedia search
-- `pyjokes` — Random jokes
+- `pyjokes` — Random programmer jokes
 - `pyautogui` — Screenshots and volume control
-- `webbrowser` — Opening websites
+- `webbrowser` — Opening websites in browser
 - `os` — Launching desktop apps
 
 ---
@@ -45,7 +47,7 @@ Friday is a Python-based desktop voice assistant powered by Google Gemini AI. It
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/friday-assistant.git
+git clone https://github.com/dilnoor19/friday-assistant.git
 cd friday-assistant
 ```
 
@@ -55,15 +57,19 @@ cd friday-assistant
 pip install pyttsx3 SpeechRecognition requests pywhatkit wikipedia pyjokes pyautogui
 ```
 
-> **Note:** `pyaudio` is required for microphone access. Install it with:
+> **Note:** `pyaudio` is required for microphone access. Install it separately:
 > ```bash
 > pip install pyaudio
 > ```
-> If it fails on Windows, use: `pip install pipwin` then `pipwin install pyaudio`
+> If it fails on Windows, try:
+> ```bash
+> pip install pipwin
+> pipwin install pyaudio
+> ```
 
 ### 3. Add your API keys
 
-Open `friday.py` and replace the placeholders:
+Open `friday.py` and replace the placeholders at the top of the file:
 
 ```python
 API_KEY = "your_gemini_api_key"
@@ -73,15 +79,15 @@ WEATHER_API_KEY = "your_openweathermap_api_key"
 NEWS_API_KEY    = "your_newsapi_key"
 ```
 
-| API | Get it from |
+| API | Where to get it |
 |---|---|
 | Gemini | [Google AI Studio](https://aistudio.google.com/) |
-| OpenWeatherMap | [openweathermap.org](https://openweathermap.org/api) |
+| OpenWeatherMap | [openweathermap.org/api](https://openweathermap.org/api) |
 | NewsAPI | [newsapi.org](https://newsapi.org/) |
 
-### 4. Update app paths (Windows)
+### 4. Update app shortcut paths (Windows only)
 
-In the `open_apps()` function, update the `.lnk` paths to match your system's shortcut locations:
+In the `open_apps()` function, update the `.lnk` paths to match your own Desktop shortcuts:
 
 ```python
 "vs code": "C:/Users/YOUR_USERNAME/OneDrive/Desktop/Visual Studio Code.lnk",
@@ -95,10 +101,10 @@ python friday.py
 
 ---
 
-## 🗣️ Example Voice Commands
+## 🗣️ Voice Commands
 
 ```
-"What is quantum computing?"       → Asks Gemini AI
+"What is machine learning?"        → Asks Gemini AI
 "Open YouTube"                     → Opens YouTube in browser
 "Open VS Code"                     → Launches VS Code
 "Play song"                        → Asks for song name, plays on YouTube
@@ -106,7 +112,7 @@ python friday.py
 "Tell me the news"                 → Reads top 5 Indian headlines
 "Tell me a joke"                   → Random programming joke
 "Take screenshot"                  → Saves screenshot.png
-"What's my schedule?"              → Reads today's schedule
+"What's my schedule?"              → Reads today's daily plan
 "What time is it?"                 → Tells current time
 "Volume up / Volume down / Mute"   → Controls system volume
 "Exit" / "Stop"                    → Shuts Friday down
@@ -120,19 +126,23 @@ python friday.py
 friday-assistant/
 │
 ├── friday.py          # Main assistant script
-├── screenshot.png     # Saved here when screenshot is taken
+├── screenshot.png     # Auto-saved here on screenshot command
 └── README.md
 ```
 
 ---
 
-## 🔮 Planned Features (Orion v2)
+## 🔮 What Changed in Orion v1 (Successor)
 
-- [ ] Wake word detection ("Hey Friday")
-- [ ] GUI interface with animations
-- [ ] Modular plugin system
-- [ ] Reminder & alarm support
-- [ ] WhatsApp message sending
+Friday was the foundation. [Orion](https://github.com/dilnoor19/orion) builds on everything here and adds:
+
+- [x] Conversation history (last 10 exchanges remembered)
+- [x] Reminder system with background thread timer
+- [x] System info — CPU, RAM, battery, disk usage
+- [x] Calculator and unit converter (km, kg, °C, GB, etc.)
+- [x] Retry logic on failed mic input
+- [x] Cleaner error handling across all modules
+- [x] More websites (GitHub, LeetCode, Stack Overflow)
 
 ---
 
